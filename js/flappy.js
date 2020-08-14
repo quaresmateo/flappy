@@ -41,7 +41,7 @@ function ParDeBarreiras(altura, abertura, x) {
   };
 }
 
-function Barreira(altura, largura, espaco, notificarPonto) {
+function Barreiras(altura, largura, espaco, notificarPonto) {
   this.pares = [
     new ParDeBarreiras(altura, abertura, largura),
     new ParDeBarreiras(altura, abertura, largura + espaco),
@@ -70,3 +70,7 @@ function Barreira(altura, largura, espaco, notificarPonto) {
 const barreiras = new Barreiras(700, 1200, 200, 400);
 const areaDoJogo = document.querySelector("[wm-flappy]");
 barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
+
+setInterval(() => {
+  barreiras.animar();
+}, 20);
