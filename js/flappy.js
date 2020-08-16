@@ -66,10 +66,40 @@ function Barreiras(altura, largura, abertura, espaco, notificarPonto) {
   };
 }
 
+function Passaro(alturaJogo) {
+  let voando = true;
+
+  this.elemento = novoElemento("img", "passaro");
+  this.elemento.src = "imgs/passaro.png";
+
+  this.getY = () => parseInt(this.elemento.style.bottom.replace("px", ""));
+  this.setY = (y) => (this.elemento.style.bottom = `${y}px`);
+
+  window.onkeydown = (e) => (voando = true);
+  window.onkeyup = (e) => (voando = false);
+
+  this.animar = () => {
+    const novoY = this.getY() + (voando ? 8 : -5);
+    const alturaMaxima = alturaJogo - this.elemento.clientHeight;
+
+    if (this.getY() <= 0) {
+      this.setY(0);
+    } else if (novoY >= alturaMaxima) {
+      this.setY(alturaMaxima);
+    } else {
+      this.setY(novoY);
+    }
+  };
+  this.setY(alturaJogo / 2);
+}
+
 const barreiras = new Barreiras(700, 1200, 200, 400, () => console.log("test"));
+const passaro = new Passaro(700);
 const areaDoJogo = document.querySelector("[wm-flappy]");
+areaDoJogo.appendChild(passaro.elemento);
 barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
 
 setInterval(() => {
   barreiras.animar();
+  passaro.animar();
 }, 20);
