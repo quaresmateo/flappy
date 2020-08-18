@@ -106,10 +106,10 @@ function estaoSobrepostos(elementoA, elementoB) {
   const b = elementoB.getBoundingClientRect();
 
   a.right = a.left + a.width;
-  a.bottom = a.top + a.width;
+  a.bottom = a.top + a.height;
 
   b.right = b.left + b.width;
-  b.bottom = b.top + b.width;
+  b.bottom = b.top + b.height;
 
   const horizontal = a.right >= b.left && b.right >= a.left;
   const vertical = a.bottom >= b.top && b.bottom >= a.top;
