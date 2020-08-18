@@ -118,7 +118,7 @@ function estaoSobrepostos(elementoA, elementoB) {
 }
 
 function colidiu(passaro, barreiras) {
-  const colidiu = false;
+  let colidiu = false;
   barreiras.pares.forEach((parDeBarreiras) => {
     if (!colidiu) {
       const superior = parDeBarreiras.superior.elemento;
@@ -140,7 +140,7 @@ function FlappyBird() {
   const largura = areaDoJogo.clientWidth;
 
   const progresso = new Progresso();
-  const barreiras = new Barreiras(altura, largura, 200, 400, () =>
+  const barreiras = new Barreiras(altura, largura, 220, 400, () =>
     progresso.atualizarPontos(++pontos)
   );
   const passaro = new Passaro(altura);
