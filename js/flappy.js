@@ -104,7 +104,7 @@ function Progresso() {
 function FlappyBird() {
   let pontos = 0;
 
-  const areaDoJogo = documento.querySelector("[wm-flappy]");
+  const areaDoJogo = document.querySelector("[wm-flappy]");
   const altura = areaDoJogo.clientHeight;
   const largura = areaDoJogo.clientWidth;
 
@@ -119,12 +119,14 @@ function FlappyBird() {
   barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
 
   this.start = () => {
-    const temporizador = setTimeout(() => {
+    const temporizador = setInterval(() => {
       barreiras.animar();
       passaro.animar();
     }, 20);
   };
 }
+
+new FlappyBird().start();
 
 // const barreiras = new Barreiras(700, 1200, 200, 400, () => console.log("test"));
 // const passaro = new Passaro(700);
