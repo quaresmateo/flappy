@@ -93,13 +93,22 @@ function Passaro(alturaJogo) {
   this.setY(alturaJogo / 2);
 }
 
-const barreiras = new Barreiras(700, 1200, 200, 400, () => console.log("test"));
-const passaro = new Passaro(700);
-const areaDoJogo = document.querySelector("[wm-flappy]");
-areaDoJogo.appendChild(passaro.elemento);
-barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
+function Progresso() {
+  this.elemento = novoElemento("span", "progresso");
+  this.atualizarPontos = (pontos) => {
+    this.elemento.innerHTML = pontos;
+  };
+  this.atualizarPontos(0);
+}
 
-setInterval(() => {
-  barreiras.animar();
-  passaro.animar();
-}, 20);
+// const barreiras = new Barreiras(700, 1200, 200, 400, () => console.log("test"));
+// const passaro = new Passaro(700);
+// const areaDoJogo = document.querySelector("[wm-flappy]");
+// areaDoJogo.appendChild(passaro.elemento);
+// areaDoJogo.appendChild(new Progresso().elemento);
+// barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
+
+// setInterval(() => {
+//   barreiras.animar();
+//   passaro.animar();
+// }, 20);
