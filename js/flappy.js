@@ -117,6 +117,21 @@ function estaoSobrepostos(elementoA, elementoB) {
   return horizontal && vertical;
 }
 
+function colidiu(passaro, barreiras) {
+  const colidiu = false;
+  barreiras.pares.forEach((parDeBarreiras) => {
+    if (!colidiu) {
+      const superior = parDeBarreiras.superior.elemento;
+      const inferior = parDeBarreiras.inferior.elemento;
+
+      colidiu =
+        estaoSobrepostos(passaro.elemento, superior) ||
+        estaoSobrepostos(passaro.elemento, inferior);
+    }
+  });
+  return colidiu;
+}
+
 function FlappyBird() {
   let pontos = 0;
 
@@ -138,6 +153,10 @@ function FlappyBird() {
     const temporizador = setInterval(() => {
       barreiras.animar();
       passaro.animar();
+
+      if (colidiu(passaro, barreiras)) {
+        clearInterval(temporizador);
+      }
     }, 20);
   };
 }
