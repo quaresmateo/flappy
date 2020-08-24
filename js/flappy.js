@@ -158,6 +158,7 @@ function FlappyBird() {
   barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
 
   this.start = () => {
+    const nomeUsuario = prompt("Informe seu nome", "Seu nome aqui");
     const temporizador = setInterval(() => {
       barreiras.animar();
       passaro.animar();
