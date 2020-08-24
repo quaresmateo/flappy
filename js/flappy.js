@@ -103,10 +103,10 @@ function Progresso() {
 
 function Recorde() {
   this.elemento = novoElemento("span", "recorde");
-  this.atualizarPontos = (pontos) => {
+  this.atualizarRecorde = (pontos) => {
     this.elemento.innerHTML = pontos;
   };
-  this.atualizarPontos(0);
+  this.atualizarRecorde(0);
 }
 
 function estaoSobrepostos(elementoA, elementoB) {
