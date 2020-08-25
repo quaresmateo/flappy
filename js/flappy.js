@@ -109,13 +109,18 @@ function Recorde() {
     if (pontuacao > recordeAtual) {
       window.localStorage.setItem("recordeAtual", pontuacao);
       window.localStorage.setItem("nomeRecordeAtual", nome);
+      this.elemento.innerHTML = `${nome}: ${pontuacao}`;
     }
   };
 
   const recordeAtual = window.localStorage.getItem("recordeAtual");
   const nomeRecordeAtual = window.localStorage.getItem("nomeRecordeAtual");
 
-  this.atualizarRecorde(recordeAtual, nomeRecordeAtual);
+  if (recordeAtual) {
+    this.elemento.innerHTML = `${nomeRecordeAtual}: ${recordeAtual}`;
+  } else {
+    this.elemento.innerHTML = `${nomeRecordeAtual}: ${recordeAtual}`;
+  }
 }
 
 function estaoSobrepostos(elementoA, elementoB) {
@@ -164,6 +169,7 @@ function FlappyBird() {
   const passaro = new Passaro(altura);
 
   areaDoJogo.appendChild(progresso.elemento);
+  areaDoJogo.appendChild(recorde.elemento);
   areaDoJogo.appendChild(passaro.elemento);
   barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
 

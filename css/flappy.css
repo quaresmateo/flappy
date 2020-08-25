@@ -61,3 +61,12 @@
   font-size: 70px;
   z-index: 100;
 }
+
+.recorde {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: Pixel;
+  font-size: 50px;
+  z-index: 100;
+}
