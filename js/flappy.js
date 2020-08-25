@@ -103,10 +103,13 @@ function Progresso() {
 
 function Recorde() {
   this.elemento = novoElemento("span", "recorde");
-  this.atualizarRecorde = (pontos) => {
-    this.elemento.innerHTML = pontos;
+  this.atualizarRecorde = (pontuacao, nome) => {
+    window.localStorage.setItem("recordeAtual", pontuacao);
+    window.localStorage.setItem("nomeRecordeAtual", nome);
   };
-  this.atualizarRecorde(0);
+  const recordeAtual = window.localStorage.getItem("recordeAtual");
+  const nomeRecordeAtual = window.localStorage.getItem("nomeRecordeAtual");
+  this.atualizarRecorde(recordeAtual, nomeRecordeAtual);
 }
 
 function estaoSobrepostos(elementoA, elementoB) {
