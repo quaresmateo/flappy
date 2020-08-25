@@ -103,12 +103,18 @@ function Progresso() {
 
 function Recorde() {
   this.elemento = novoElemento("span", "recorde");
+
   this.atualizarRecorde = (pontuacao, nome) => {
-    window.localStorage.setItem("recordeAtual", pontuacao);
-    window.localStorage.setItem("nomeRecordeAtual", nome);
+    const recordeAtual = window.localStorage.getItem("recordeAtual");
+    if (pontuacao > recordeAtual) {
+      window.localStorage.setItem("recordeAtual", pontuacao);
+      window.localStorage.setItem("nomeRecordeAtual", nome);
+    }
   };
+
   const recordeAtual = window.localStorage.getItem("recordeAtual");
   const nomeRecordeAtual = window.localStorage.getItem("nomeRecordeAtual");
+
   this.atualizarRecorde(recordeAtual, nomeRecordeAtual);
 }
 
@@ -144,6 +150,7 @@ function colidiu(passaro, barreiras) {
 }
 
 function FlappyBird() {
+  const recorde = new Recorde();
   let pontos = 0;
 
   const areaDoJogo = document.querySelector("[wm-flappy]");
@@ -167,6 +174,7 @@ function FlappyBird() {
       passaro.animar();
 
       if (colidiu(passaro, barreiras)) {
+        recorde.atualizarRecorde(pontos, nomeUsuario);
         clearInterval(temporizador);
       }
     }, 20);
