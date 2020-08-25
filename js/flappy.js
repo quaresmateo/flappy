@@ -173,15 +173,34 @@ function FlappyBird() {
   areaDoJogo.appendChild(passaro.elemento);
   barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
 
-  this.start = () => {
-    const nomeUsuario = prompt("Informe seu nome", "Seu nome aqui");
+  this.start = (restart = false) => {
+    let nomeUsuario = "";
+    if (!restart) {
+      nomeUsuario = prompt("Informe seu nome", "Seu nome aqui");
+      window.localStorage.setItem("nomeJogador", nomeUsuario);
+    } else {
+      nomeUsuario = window.localStorage.getItem("nomeJogador");
+    }
+
     const temporizador = setInterval(() => {
       barreiras.animar();
       passaro.animar();
 
       if (colidiu(passaro, barreiras)) {
+        const areaDoJogo = document.querySelector("[wm-flappy]");
         recorde.atualizarRecorde(pontos, nomeUsuario);
+
         clearInterval(temporizador);
+
+        const recomecar = window.confirm("Tentar novamente?");
+
+        if (recomecar) {
+          areaDoJogo.innerHTML = "";
+          new FlappyBird().start(true);
+        } else {
+          areaDoJogo.innerHTML = "";
+          new FlappyBird().start();
+        }
       }
     }, 20);
   };
