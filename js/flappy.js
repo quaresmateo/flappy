@@ -196,10 +196,10 @@ function FlappyBird() {
 
         if (recomecar) {
           areaDoJogo.innerHTML = "";
-          new FlappyBird().start(true);
+          return new FlappyBird().start(true);
         } else {
           areaDoJogo.innerHTML = "";
-          new FlappyBird().start();
+          return new FlappyBird().start();
         }
       }
     }, 20);
