@@ -101,6 +101,28 @@ function Progresso() {
   this.atualizarPontos(0);
 }
 
+function Recorde() {
+  this.elemento = novoElemento("span", "recorde");
+
+  this.atualizarRecorde = (pontuacao, nome) => {
+    const recordeAtual = window.localStorage.getItem("recordeAtual");
+    if (pontuacao > recordeAtual) {
+      window.localStorage.setItem("recordeAtual", pontuacao);
+      window.localStorage.setItem("nomeRecordeAtual", nome);
+      this.elemento.innerHTML = `${nome}: ${pontuacao}`;
+    }
+  };
+
+  const recordeAtual = window.localStorage.getItem("recordeAtual");
+  const nomeRecordeAtual = window.localStorage.getItem("nomeRecordeAtual");
+
+  if (recordeAtual) {
+    this.elemento.innerHTML = `${nomeRecordeAtual}: ${recordeAtual}`;
+  } else {
+    this.elemento.innerHTML = `${nomeRecordeAtual}: ${recordeAtual}`;
+  }
+}
+
 function estaoSobrepostos(elementoA, elementoB) {
   const a = elementoA.getBoundingClientRect();
   const b = elementoB.getBoundingClientRect();
@@ -133,6 +155,7 @@ function colidiu(passaro, barreiras) {
 }
 
 function FlappyBird() {
+  const recorde = new Recorde();
   let pontos = 0;
 
   const areaDoJogo = document.querySelector("[wm-flappy]");
@@ -146,15 +169,18 @@ function FlappyBird() {
   const passaro = new Passaro(altura);
 
   areaDoJogo.appendChild(progresso.elemento);
+  areaDoJogo.appendChild(recorde.elemento);
   areaDoJogo.appendChild(passaro.elemento);
   barreiras.pares.forEach((par) => areaDoJogo.appendChild(par.elemento));
 
   this.start = () => {
+    const nomeUsuario = prompt("Informe seu nome", "Seu nome aqui");
     const temporizador = setInterval(() => {
       barreiras.animar();
       passaro.animar();
 
       if (colidiu(passaro, barreiras)) {
+        recorde.atualizarRecorde(pontos, nomeUsuario);
         clearInterval(temporizador);
       }
     }, 20);
