@@ -77,8 +77,16 @@
     width: 100%;
   }
 
+  .progresso {
+    font-size: 46px;
+  }
+
   .passaro {
     width: 40px;
+  }
+
+  .recorde {
+    font-size: 33px;
   }
 
   .barreira .corpo {
