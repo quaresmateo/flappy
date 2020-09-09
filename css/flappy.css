@@ -79,4 +79,25 @@
     background-color: deepskyblue;
     overflow: hidden;
   }
+
+  .passaro {
+    position: absolute;
+    width: 40px;
+    left: calc(50% - 30px);
+  }
+
+  .barreira .corpo {
+    height: 66px;
+    width: 73px;
+    background: linear-gradient(90deg, #639301, #a5e82e);
+    border-left: 4px solid #000;
+    border-right: 4px solid #000;
+  }
+
+  .barreira .borda {
+    height: 30px;
+    width: 86px;
+    background: linear-gradient(90deg, #639301, #a5e82e);
+    border: 4px solid #000;
+  }
 }
