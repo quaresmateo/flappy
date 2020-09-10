@@ -70,3 +70,32 @@
   font-size: 50px;
   z-index: 100;
 }
+
+@media (max-width: 800px) {
+  [wm-flappy] {
+    height: 100%;
+    width: 100%;
+  }
+
+  .progresso {
+    font-size: 46px;
+  }
+
+  .passaro {
+    width: 40px;
+  }
+
+  .recorde {
+    font-size: 33px;
+  }
+
+  .barreira .corpo {
+    height: 66px;
+    width: 73px;
+  }
+
+  .barreira .borda {
+    height: 30px;
+    width: 86px;
+  }
+}
